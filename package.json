@@ -1,0 +1,29 @@
+{
+  "name": "zanner-cms-action",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Sergej Kukharev",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^5.0.5",
+    "mocha-logger": "^1.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zanner-cms/Action.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zanner-cms/Action/issues"
+  },
+  "homepage": "https://github.com/zanner-cms/Action#readme"
+}
