@@ -89,6 +89,106 @@ describe('Action', () => {
 			done();
 		});
 
+		it('Action.name get', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function () {};
+
+			expect(Action.init(name, service, action).name).to.be.equal(name);
+			done();
+		});
+
+		it('Action.service get', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function () {};
+
+			expect(Action.init(name, service, action).service).to.be.equal(service);
+			done();
+		});
+
+		it('Action.action get', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function () {};
+
+			expect(Action.init(name, service, action).action).to.be.equal(action);
+			done();
+		});
+
+		it('Action.name don`t set', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function () {};
+			let a = Action.init(name, service, action);
+			let name_new = 'name_new';
+
+			expect(() => a.name = name_new).to.throw();
+			done();
+		});
+
+		it('Action.service don`t set', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function () {};
+			let a = Action.init(name, service, action);
+			let service_new = 'service_new';
+
+			expect(() => a.service = service_new).to.throw();
+			done();
+		});
+
+		it('Action.action don`t set', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function () {};
+			let a = Action.init(name, service, action);
+			let action_new = function () {};
+
+			expect(() => a.action = action_new).to.throw();
+			done();
+		});
+
+		it('Action.apply exec', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function (x, y) { return x + y; };
+			let a = Action.init(name, service, action);
+
+			expect(a.apply).to.be.an.instanceof(Function);
+			expect(a.apply([13, 31])).to.eventually.equal(13 + 31).notify(done);
+			//a.apply([13, 31]).should.eventually.equal(44).notify(done);
+		});
+
+		it('Action.apply exec with throw', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function (x, y) { throw new Error('Action.apply'); };
+			let a = Action.init(name, service, action);
+
+			expect(a.apply([13, 31])).to.be.rejectedWith('Action.apply').notify(done);
+		});
+
+		it('Action.call exec', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function (x, y) { return x + y; };
+			let a = Action.init(name, service, action);
+
+			expect(a.call).to.be.an.instanceof(Function);
+			expect(a.call(13, 31)).to.eventually.equal(13 + 31).notify(done);
+			//a.call(13, 31).should.eventually.equal(44).notify(done);
+		});
+
+		it('Action.call exec with throw', (done) => {
+			let name = 'name';
+			let service = 'service';
+			let action = async function (x, y) { throw new Error('Action.call'); };
+			let a = Action.init(name, service, action);
+
+			expect(a.apply(13, 31)).to.be.rejectedWith('Action.call').notify(done);
+		});
+
 		it('Action.clone creates copy of instanceof Action', (done) => {
 			let name = 'name';
 			let service = 'service';
@@ -143,106 +243,6 @@ describe('Action', () => {
 			expect(a_copy._service).to.be.equal(a._service);
 			expect(a_copy._action).to.be.equal(action_copy);
 			done();
-		});
-
-		it('Action.name get', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function () {};
-
-			expect(Action.init(name, service, action).name).to.be.equal(name);
-			done();
-		});
-
-		it('Action.name don`t set', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function () {};
-			let a = Action.init(name, service, action);
-			let name_new = 'name_new';
-
-			expect(() => a.name = name_new).to.throw();
-			done();
-		});
-
-		it('Action.service get', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function () {};
-
-			expect(Action.init(name, service, action).service).to.be.equal(service);
-			done();
-		});
-
-		it('Action.service don`t set', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function () {};
-			let a = Action.init(name, service, action);
-			let service_new = 'service_new';
-
-			expect(() => a.service = service_new).to.throw();
-			done();
-		});
-
-		it('Action.action get', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function () {};
-
-			expect(Action.init(name, service, action).action).to.be.equal(action);
-			done();
-		});
-
-		it('Action.action don`t set', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function () {};
-			let a = Action.init(name, service, action);
-			let action_new = function () {};
-
-			expect(() => a.action = action_new).to.throw();
-			done();
-		});
-
-		it('Action.apply exec', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function (x, y) { return x + y; };
-			let a = Action.init(name, service, action);
-
-			expect(a.apply).to.be.an.instanceof(Function);
-			expect(a.apply([13, 31])).to.eventually.equal(13 + 31).notify(done);
-			//a.apply([13, 31]).should.eventually.equal(44).notify(done);
-		});
-
-		it('Action.apply exec with throw', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function (x, y) { throw new Error('Action.apply'); };
-			let a = Action.init(name, service, action);
-
-			expect(a.apply([13, 31])).to.be.rejectedWith('Action.apply').notify(done);
-		});
-
-		it('Action.call exec', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function (x, y) { return x + y; };
-			let a = Action.init(name, service, action);
-
-			expect(a.call).to.be.an.instanceof(Function);
-			expect(a.call(13, 31)).to.eventually.equal(13 + 31).notify(done);
-			//a.call(13, 31).should.eventually.equal(44).notify(done);
-		});
-
-		it('Action.call exec with throw', (done) => {
-			let name = 'name';
-			let service = 'service';
-			let action = async function (x, y) { throw new Error('Action.call'); };
-			let a = Action.init(name, service, action);
-
-			expect(a.apply(13, 31)).to.be.rejectedWith('Action.call').notify(done);
 		});
 
 	});

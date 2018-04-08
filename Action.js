@@ -58,6 +58,10 @@ class Action {
 		return this._action(...args);
 	}
 
+	call (...args) {
+		return this._action(...args);
+	}
+
 	clone (cloneOverwrite) {
 		let p = cloneOverwrite || {};
 		let name = p.name || this.name;
@@ -74,10 +78,6 @@ class Action {
 		this.name = name;
 		this.service = service;
 		this.action = action;
-	}
-
-	call (...args) {
-		return this._action(...args);
 	}
 
 }
