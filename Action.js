@@ -54,8 +54,8 @@ class Action {
 	
 
 	apply (args) {
-		args = [].concat(args);
-		return this._action(...args);
+		let A = [].concat(args);
+		return this._action(...A);
 	}
 
 	call (...args) {
