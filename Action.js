@@ -3,7 +3,7 @@
 'use strict';
 
 
-const AsyncFunction = require('./AsyncFunction').AsyncFunction;
+const AsyncFunction = require('zanner-cms-asyncfunction').AsyncFunction;
 
 
 class Action {

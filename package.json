@@ -1,7 +1,7 @@
 {
   "name": "zanner-cms-action",
-  "version": "0.0.2",
-  "description": "",
+  "version": "0.0.3",
+  "description": "Action class for CMS",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,7 +11,9 @@
   },
   "author": "Sergej Kukharev",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "zanner-cms-asyncfunction": "^0.0.0"
+  },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",

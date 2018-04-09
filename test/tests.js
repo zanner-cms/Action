@@ -14,17 +14,10 @@ chai.use(chaiAsPromised);
 const mlog = require('mocha-logger');
 const util = require('util');
 
+const AsyncFunction = require('zanner-cms-asyncfunction').AsyncFunction;
+
 const Action = require('../Action').Action;
-const AsyncFunction = require('../AsyncFunction').AsyncFunction;
 
-
-describe('AsyncFunction', () => {
-
-	it('is async function class', () => {
-		expect(async function () {}).to.be.instanceof(AsyncFunction);
-	});
-
-});
 
 describe('Action', () => {
 
