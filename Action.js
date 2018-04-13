@@ -4,6 +4,7 @@
 
 
 const AsyncFunction = require('zanner-cms-asyncfunction').AsyncFunction;
+const GeneratorFunction = require('zanner-cms-generatorfunction').GeneratorFunction;
 
 
 class Action {
@@ -28,6 +29,10 @@ class Action {
 
 	set action (action) {
 		if (action instanceof AsyncFunction) {
+			this._action = action;
+			return this;
+		}
+		if (action instanceof GeneratorFunction) {
 			this._action = action;
 			return this;
 		}
